@@ -10,9 +10,9 @@ function round() {
   let divSelector = randomDivId();
   $(divSelector).addClass("target");
   // TODO: помечать target текущим номером
-
+  $(divSelector).html(`${divSelector.slice(-2)}`);
   // FIXME: тут надо определять при первом клике firstHitTime
-
+  
   if (hits === maxHits) {
     endGame();
   }
@@ -29,16 +29,19 @@ function endGame() {
 }
 
 function handleClick(event) {
-  // FIXME: убирать текст со старых таргетов. Кажется есть .text?
+
   if ($(event.target).hasClass("target")) {
     hits = hits + 1;
+    // Убераем текст с ячеек таргетов
+    $(".target").html("");
     round();
   }
   // TODO: как-то отмечать если мы промахнулись? См CSS класс .miss
 }
 
+// Механизм запуска
 function init() {
-  // TODO: заказчик просил отдельную кнопку, запускающую игру а не просто по загрузке
+
   round();
 
   $(".game-field").click(handleClick);
@@ -47,6 +50,7 @@ function init() {
   });
 }
 
+// Отдельная кнопка для запуска игры
 $(".start-btn").click(function() {
   $(".start-btn").removeClass("visible");
   $(".game-board").addClass("visible");
