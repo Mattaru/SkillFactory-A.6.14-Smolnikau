@@ -1,6 +1,9 @@
 .game-board {
 	display: none;
 }
+.start-btn {
+  display: none;
+}
 .visible {
 	display: block;
 }

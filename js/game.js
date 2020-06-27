@@ -47,4 +47,9 @@ function init() {
   });
 }
 
-$(document).ready(init);
+$(".start-btn").click(function() {
+  $(".start-btn").removeClass("visible");
+  $(".game-board").addClass("visible");
+  init();
+});
+
