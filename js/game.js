@@ -35,8 +35,13 @@ function handleClick(event) {
     // Убераем текст с ячеек таргетов
     $(".target").html("");
     round();
+  } else {
+    // Отмечаем промахи красным фоном на 0.5с.
+    $(event.target).addClass("miss");
+    setTimeout(function() {
+      $(event.target).removeClass("miss");
+    }, 500);
   }
-  // TODO: как-то отмечать если мы промахнулись? См CSS класс .miss
 }
 
 // Механизм запуска
