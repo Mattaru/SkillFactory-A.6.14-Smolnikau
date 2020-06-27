@@ -16,7 +16,10 @@
   margin: 1px 1px 1px 1px;
   line-height: 10vh;
 }
-
+.total-score {
+  text-align: center;
+  padding: 10px 10px;
+}
 .target {
   background-color: green;
   color: white;

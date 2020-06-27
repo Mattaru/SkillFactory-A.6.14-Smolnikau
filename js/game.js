@@ -2,13 +2,15 @@ const numDivs = 36;
 const maxHits = 10;
 
 let hits = 0;
+let points = 0;
+let pageNumber = 1; 
 let firstHitTime = 0;
 
 function round() { 
   let divSelector = randomDivId();
   $(divSelector).addClass("target");
   // Помечание таргета текущим номером
-  $(divSelector).html(`${divSelector.slice(-2)}`);
+  $(divSelector).html(`${pageNumber}`);
   // После первого клика на .таргет - переменная записывает значение таймера
   $(divSelector).one("click", function() {
     firstHitTime = getTimestamp();
@@ -25,18 +27,23 @@ function endGame() {
   let totalPlayedSeconds = Number(totalPlayedMillis / 1000).toPrecision(3);
   $("#total-time-played").text(totalPlayedSeconds);
   $("#win-message").removeClass("d-none");
+  // Вывод подсчета очков 
+  $(".total-score").html(`<strong>Итоговый счет: ${points}</strong>`);
 }
 
 // Событие клика по ячейке
 function handleClick(event) {
   if ($(event.target).hasClass("target")) {
     hits = hits + 1;
+    points += 1;
+    pageNumber += 1;
     // Убераем текст с ячеек таргетов
     $(".target").html("");
     // Убераем .таргет с ячеек
     $(event.target).removeClass("target");
     round();
   } else {
+    points -= 1;
     // Отмечаем промахи красным фоном на 0.5с.
     $(event.target).addClass("miss");
     setTimeout(function() {
