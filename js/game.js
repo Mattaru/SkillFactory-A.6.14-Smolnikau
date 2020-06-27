@@ -11,10 +11,10 @@ function round() {
   $(divSelector).addClass("target");
   // Помечание таргета текущим номером
   $(divSelector).html(`${pageNumber}`);
-  // После первого клика на .таргет - переменная записывает значение таймера
-  $(divSelector).one("click", function() {
-    firstHitTime = getTimestamp();
-  });
+  // Пeренесено на кнопку старт, по просьбе задания
+  // $(divSelector).one("click", function() {
+  //   firstHitTime = getTimestamp();
+  // });
   if (hits === maxHits) {
     endGame();
   }
@@ -66,6 +66,7 @@ $(".start-btn").click(function() {
   $(".start-btn").removeClass("visible");
   $(".game-board").addClass("visible");
   $(".score").addClass("visible");
+  firstHitTime = getTimestamp();
   init();
 });
 
